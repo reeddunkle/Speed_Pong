@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack"
+    "start": "webpack-dev-server",
+    "prebuild": "rm -rf dist && mkdir dist && cp index.html dist/",
+    "build": "webpack --optimize-minimize --optimize-dedupe --devtool source-map"
   },
   "author": "Emmanuel and Reed",
   "license": "ISC",
