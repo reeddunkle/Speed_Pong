@@ -9,12 +9,21 @@ module.exports = {
       contentBase: ""
     },
     module: {
+      preLoaders: [
+        {
+          test: /\.jsx?$/,
+          loader: 'standard',
+          exclude: /(node_modules|dist)/,
+        }
+      ],
       loaders: [
-        test: /\.jsx?$/,
-        loader: 'babel',
-        exclude: /(node_module|dist)/,
-        query: {
-          presets: ['es2015']
+        {
+          test: /\.jsx?$/,
+          loader: 'babel',
+          exclude: /(node_modules|dist)/,
+          query: {
+            presets: ['es2015']
+          }
         }
       ]
     }
