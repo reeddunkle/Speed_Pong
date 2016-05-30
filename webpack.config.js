@@ -7,5 +7,15 @@ module.exports = {
     },
     devServer: {
       contentBase: ""
+    },
+    module: {
+      loaders: [
+        test: /\.jsx?$/,
+        loader: 'babel',
+        exclude: /(node_module|dist)/,
+        query: {
+          presets: ['es2015']
+        }
+      ]
     }
 }
