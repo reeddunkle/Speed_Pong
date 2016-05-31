@@ -24,7 +24,7 @@ module.exports = {
         loader: 'babel',
         exclude: /(node_modules|dist)/,
         query: {
-          presets: ['es2015']
+          presets: ['es2015', 'stage-0']
         }
       }
     ]

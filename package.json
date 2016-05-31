@@ -8,7 +8,7 @@
     "karma-start": "karma start",
     "karma-test": "karma run",
     "pretest": "npm run lint",
-    "prestart": "npm run lint",
+    "prestart": "npm run lint && rm -rf dist && mkdir dist && cp index.html dist/",
     "start": "webpack-dev-server",
     "prebuild": "rm -rf dist && mkdir dist && cp index.html dist/",
     "build": "webpack --optimize-minimize --optimize-dedupe --devtool source-map",
@@ -20,6 +20,7 @@
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "karma": "^0.13.22",
@@ -38,6 +39,9 @@
       "it",
       "beforeEach",
       "afterEach"
+    ],
+    "ignore": [
+      "karma.conf.js"
     ]
   }
 }
