@@ -1,3 +1,7 @@
 body {
-  background-color: #345Fc1;
+  background-color: #ffccf2;
+}
+
+canvas {
+  border: 1px solid black;
 }

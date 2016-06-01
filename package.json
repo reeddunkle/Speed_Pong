@@ -43,5 +43,8 @@
     "ignore": [
       "karma.conf.js"
     ]
+  },
+  "browser": {
+    "canvas": true
   }
 }

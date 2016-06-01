@@ -1,3 +1,3 @@
-import {add} from './js/basic.js'
+import {draw} from './js/basic.js'
+window.onload = draw
 
-console.log(add(4, 3))
