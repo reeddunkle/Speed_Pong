@@ -2,6 +2,19 @@ body {
   background-color: #ffccf2;
 }
 
+h1 {
+  text-align: center;
+}
+
 canvas {
   border: 1px solid black;
+  width: 75vw;
+  height: 75vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: 1px solid blue;
 }
