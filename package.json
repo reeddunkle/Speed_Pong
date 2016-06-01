@@ -8,9 +8,9 @@
     "karma-start": "karma start",
     "karma-test": "karma run",
     "pretest": "npm run lint",
-    "prestart": "npm run lint && rm -rf dist && mkdir dist && cp index.html style.css dist/",
+    "prestart": "npm run lint",
     "start": "webpack-dev-server",
-    "prebuild": "rm -rf dist && mkdir dist && cp index.html style.css dist/",
+    "prebuild": "rm -rf dist && mkdir dist && cp static/* dist/",
     "build": "webpack --optimize-minimize --optimize-dedupe --devtool source-map",
     "lint": "standard"
   },
@@ -43,8 +43,5 @@
     "ignore": [
       "karma.conf.js"
     ]
-  },
-  "browser": {
-    "canvas": true
   }
 }
