@@ -8,9 +8,9 @@
     "karma-start": "karma start",
     "karma-test": "karma run",
     "pretest": "npm run lint",
-    "prestart": "npm run lint && rm -rf dist && mkdir dist && cp index.html styles.css dist/",
+    "prestart": "npm run lint && rm -rf dist && mkdir dist && cp index.html style.css dist/",
     "start": "webpack-dev-server",
-    "prebuild": "rm -rf dist && mkdir dist && cp index.html styles.css dist/",
+    "prebuild": "rm -rf dist && mkdir dist && cp index.html style.css dist/",
     "build": "webpack --optimize-minimize --optimize-dedupe --devtool source-map",
     "lint": "standard"
   },
