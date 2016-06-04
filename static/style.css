@@ -8,7 +8,7 @@ h1 {
 
 canvas {
   border: 1px solid black;
-  width: 75vw;
+  width: 99vw;
   height: 75vh;
 }
 
@@ -16,5 +16,4 @@ canvas {
   display: flex;
   justify-content: center;
   align-content: center;
-  border: 1px solid blue;
 }

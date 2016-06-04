@@ -1,8 +1,9 @@
-import {add} from './basic.js'
-import {assert} from 'chai'
+// import {add} from '../../src/js/basic.js'
 
-describe('Basic tset', () => {
-  it('adds', () => {
-    assert.equal(add(1, 2), 3)
-  })
-})
+// import {assert} from 'chai'
+
+// describe('Basic tset', () => {
+//   it('adds', () => {
+//     assert.equal(add(1, 2), 3)
+//   })
+// })
