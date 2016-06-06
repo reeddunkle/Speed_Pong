@@ -1,12 +1,16 @@
 
+const PADDLE_ACCELERATION = 1
+
 const Paddle = () => {
   return {
     x: 0,
     y: 0,
     width: 5,
     height: 130,
-    speed: 0,
-    acceleration: 0,
+    speedX: 0,
+    speedY: 0,
+    accelerationX: 0,
+    accelerationY: 0,
     draw (ctx) {
       ctx.fillRect(this.x, this.y, this.width, this.height)
     }
@@ -20,13 +24,39 @@ const Ball = () => {
     radius: 8,
     startAngle: 0,
     endAngle: Math.PI * 2,
-    speed: 0,
-    acceleration: 0,
+    speedX: 0,
+    speedY: 0,
+    accelerationX: 0,
+    accelerationY: 0,
     draw (ctx) {
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle)
       ctx.stroke()
     }
+  }
+}
+
+const paddleMovement = (key, paddleTwo) => {
+  switch (key) {
+    case 'ArrowUp':
+      paddleTwo.accelerationY -= PADDLE_ACCELERATION
+      // paddleTwo.acceleration
+      break
+
+    case 'ArrowDown':
+      paddleTwo.accelerationY += PADDLE_ACCELERATION
+      break
+
+    case 'ArrowLeft':
+      paddleTwo.accelerationX -= PADDLE_ACCELERATION
+      break
+
+    case 'ArrowRight':
+      paddleTwo.accelerationX += PADDLE_ACCELERATION
+      break
+
+    default:
+      return
   }
 }
 
@@ -50,27 +80,7 @@ export const Game = (canvas) => {
   ball.y = canvas.height / 2
 
   document.addEventListener('keydown', (event) => {
-    switch (event.key) {
-      case 'ArrowUp':
-        paddleTwo.y -= 1
-        // paddleTwo.acceleration
-        break
-
-      case 'ArrowDown':
-        paddleTwo.y += 1
-        break
-
-      case 'ArrowLeft':
-        paddleTwo.x -= 1
-        break
-
-      case 'ArrowRight':
-        paddleTwo.x += 1
-        break
-
-      default:
-        return
-    }
+    paddleMovement(event.key, paddleTwo)
   })
 
   return {

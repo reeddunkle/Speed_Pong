@@ -68,40 +68,40 @@ describe('Paddle Movement', () => {
   it('moves up with the "ArrowUp" key', () => {
     const paddleTwo = newGame.paddleTwo
     const upEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' })
-    const targetPosition = paddleTwo.y - 1
+    const targetAcceleration = paddleTwo.accelerationY - 1
 
     document.dispatchEvent(upEvent)
 
-    assert.equal(paddleTwo.y, targetPosition)
+    assert.equal(paddleTwo.accelerationY, targetAcceleration)
   })
 
   it('moves down with the "ArrowDown" key', () => {
     const paddleTwo = newGame.paddleTwo
     const downEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' })
-    const targetPosition = paddleTwo.y + 1
+    const targetAcceleration = paddleTwo.accelerationY + 1
 
     document.dispatchEvent(downEvent)
 
-    assert.equal(paddleTwo.y, targetPosition)
+    assert.equal(paddleTwo.accelerationY, targetAcceleration)
   })
 
   it('moves left with the "ArrowLeft" key', () => {
     const paddleTwo = newGame.paddleTwo
     const leftEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft' })
-    const targetPosition = paddleTwo.x - 1
+    const targetAcceleration = paddleTwo.accelerationX - 1
 
     document.dispatchEvent(leftEvent)
 
-    assert.equal(paddleTwo.x, targetPosition)
+    assert.equal(paddleTwo.accelerationX, targetAcceleration)
   })
 
   it('moves right with the "ArrowRight" key', () => {
     const paddleTwo = newGame.paddleTwo
     const rightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' })
-    const targetPosition = paddleTwo.x + 1
+    const targetAcceleration = paddleTwo.accelerationX + 1
 
     document.dispatchEvent(rightEvent)
 
-    assert.equal(paddleTwo.x, targetPosition)
+    assert.equal(paddleTwo.accelerationX, targetAcceleration)
   })
 })
