@@ -65,6 +65,48 @@ describe('Paddle Movement', () => {
     newGame = Game(canvas)
   })
 
+  // paddleOne movement
+  it('moves up with the "w" key', () => {
+    const paddleOne = newGame.paddleOne
+    const upEvent = new KeyboardEvent('keydown', { key: 'w' })
+    const targetAcceleration = paddleOne.accelerationY - 1
+
+    document.dispatchEvent(upEvent)
+
+    assert.equal(paddleOne.accelerationY, targetAcceleration)
+  })
+
+  it('moves down with the "s" key', () => {
+    const paddleOne = newGame.paddleOne
+    const downEvent = new KeyboardEvent('keydown', { key: 's' })
+    const targetAcceleration = paddleOne.accelerationY + 1
+
+    document.dispatchEvent(downEvent)
+
+    assert.equal(paddleOne.accelerationY, targetAcceleration)
+  })
+
+  it('moves left with the "a" key', () => {
+    const paddleOne = newGame.paddleOne
+    const leftEvent = new KeyboardEvent('keydown', { key: 'a' })
+    const targetAcceleration = paddleOne.accelerationX - 1
+
+    document.dispatchEvent(leftEvent)
+
+    assert.equal(paddleOne.accelerationX, targetAcceleration)
+  })
+
+  it('moves right with the "d" key', () => {
+    const paddleOne = newGame.paddleOne
+    const rightEvent = new KeyboardEvent('keydown', { key: 'd' })
+    const targetAcceleration = paddleOne.accelerationX + 1
+
+    document.dispatchEvent(rightEvent)
+
+    assert.equal(paddleOne.accelerationX, targetAcceleration)
+  })
+
+  // paddleTwo movement
   it('moves up with the "ArrowUp" key', () => {
     const paddleTwo = newGame.paddleTwo
     const upEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' })

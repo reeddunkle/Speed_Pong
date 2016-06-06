@@ -36,11 +36,26 @@ const Ball = () => {
   }
 }
 
-const paddleMovement = (key, paddleTwo) => {
+const paddleMovement = (key, paddleOne, paddleTwo) => {
   switch (key) {
+    case 'w':
+      paddleOne.accelerationY -= PADDLE_ACCELERATION
+      break
+
+    case 's':
+      paddleOne.accelerationY += PADDLE_ACCELERATION
+      break
+
+    case 'a':
+      paddleOne.accelerationX -= PADDLE_ACCELERATION
+      break
+
+    case 'd':
+      paddleOne.accelerationX += PADDLE_ACCELERATION
+      break
+
     case 'ArrowUp':
       paddleTwo.accelerationY -= PADDLE_ACCELERATION
-      // paddleTwo.acceleration
       break
 
     case 'ArrowDown':
@@ -80,7 +95,7 @@ export const Game = (canvas) => {
   ball.y = canvas.height / 2
 
   document.addEventListener('keydown', (event) => {
-    paddleMovement(event.key, paddleTwo)
+    paddleMovement(event.key, paddleOne, paddleTwo)
   })
 
   return {
