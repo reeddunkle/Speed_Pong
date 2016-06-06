@@ -42,6 +42,9 @@
     ],
     "ignore": [
       "karma.conf.js"
-    ]
+    ],
+    "env": {
+      "browser": true
+    }
   }
 }
