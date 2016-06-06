@@ -1,2 +1,6 @@
 import {drawStartScreen} from './basic.js'
-window.onload = function () { drawStartScreen() }
+import {Game} from './basic.js'
+
+const canvasElement = document.getElementById('gameWindow')
+
+window.onload = function () { Game(canvasElement).drawStartScreen() }
