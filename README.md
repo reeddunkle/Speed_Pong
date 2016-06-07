@@ -1,12 +1,33 @@
 # Pressure Pong
 
+*In development*
+
 A take on the classic Pong! game, adding x-axis movement and acceleration to the paddles.
+
+----
+
+## What it does right now:
+
+- Draws shapes onto a canvas
+
+<img src=http://i.imgur.com/isn8jIJ.png>
+
+- Tests the canvas rendering
+- Tests the object properties
+- Tests the paddles' movement
+
+## To-do:
+
+- Re-render the canvas (frames per second)
+- Move the ball
+- Be a game
 
 ----
 
 ## Application Goals
 
-1. Make a thorough, robust web applicatoin
+1. Be fun!
+2. Make a thorough, robust web applicatoin
 2. Integrate tests and cross-browser tests
 3. Use Webpack to deliver a deployable distribution
 4. OOP
