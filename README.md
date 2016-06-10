@@ -6,7 +6,7 @@ A take on the classic Pong! game, adding x-axis movement and acceleration to the
 
 ----
 
-## Recently updated:
+## Recently added:
 
 - We added canvas re-rendering!
 - Wrote update functions for the objects
