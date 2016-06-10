@@ -1,5 +1,6 @@
 
-const PADDLE_ACCELERATION = 1
+export const PADDLE_ACCELERATION = 4
+export const DECELERATION = 1
 
 const Paddle = () => {
   return {
@@ -11,6 +12,29 @@ const Paddle = () => {
     speedY: 0,
     accelerationX: 0,
     accelerationY: 0,
+    update () {
+      this.speedX += this.accelerationX
+      this.speedY += this.accelerationY
+
+      if (this.speedX > 0) {
+        this.speedX -= DECELERATION
+      }
+
+      if (this.speedX < 0) {
+        this.speedX += DECELERATION
+      }
+
+      if (this.speedY > 0) {
+        this.speedY -= DECELERATION
+      }
+
+      if (this.speedY < 0) {
+        this.speedY += DECELERATION
+      }
+
+      this.x += this.speedX
+      this.y += this.speedY
+    },
     draw (ctx) {
       ctx.fillRect(this.x, this.y, this.width, this.height)
     }
@@ -28,6 +52,24 @@ const Ball = () => {
     speedY: 0,
     accelerationX: 0,
     accelerationY: 0,
+    update () {
+
+      if (this.speedX > 0) {
+        this.speedX -= DECELERATION
+      }
+      if (this.speedX < 0) {
+        this.speedX += DECELERATION
+      }
+      if (this.speedY < 0) {
+        this.speedY += DECELERATION
+      }
+      if (this.speedY > 0) {
+        this.speedY -= DECELERATION
+      }
+
+      this.x += this.speedX
+      this.y += this.speedY
+    },
     draw (ctx) {
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle)
@@ -98,9 +140,18 @@ export const Game = (canvas) => {
     paddleMovement(event.key, paddleOne, paddleTwo)
   })
 
+  // var tick = function() {
+  //   self.update();
+  //   self.draw(screen, gameSize);
+  //   requestAnimationFrame(tick);
+  // };
+
+  // tick();
+
   return {
     paddleOne,
     paddleTwo,
+    ball,
     drawObjects () {
       paddleOne.draw(ctx)
       paddleTwo.draw(ctx)
