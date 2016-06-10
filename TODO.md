@@ -1,13 +1,23 @@
 TODO
 ------
 
-- Acceleration depleting over time / Each tick
+- Collision detection for ball and paddle
+- Collision detection for paddle canvas borders
+- Invisible wall for paddles in the middle?
 
-- Implement speed based on acceleration
+- Find the right movement values (harder than it sounds)
 
-- Speed depletes over time / Each tick
+- AI
 
-- Frame refreshing
+- ~~Acceleration depleting over time / Each tick~~
 
-- paddle positions update each frame based on speed
+- ~~Implement speed based on acceleration~~
+
+- ~~Speed depletes over time / Each tick~~
+
+- ~~Frame refreshing~~
+
+- ~~paddle positions update each frame based on speed~~
+
+
 
