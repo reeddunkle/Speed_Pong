@@ -158,11 +158,10 @@ describe('Paddle Movement', () => {
   // paddle Object speedX
   it('changes speedX based on acceleration', () => {
     const paddleTwo = newGame.paddleTwo
+    const targetSpeedX = (PADDLE_ACCELERATION * 20) - DECELERATION
 
-    const targetSpeedX = 8 - DECELERATION * 2
+    paddleTwo.accelerationX = PADDLE_ACCELERATION * 20
 
-    paddleTwo.accelerationX = 4
-    paddleTwo.update()
     paddleTwo.update()
 
     assert.equal(paddleTwo.speedX, targetSpeedX)
@@ -171,10 +170,9 @@ describe('Paddle Movement', () => {
   // paddle Object speedY
   it('changes speedY based on acceleration', () => {
     const paddleTwo = newGame.paddleTwo
-    const targetSpeedY = 8 - DECELERATION * 2
+    const targetSpeedY = (PADDLE_ACCELERATION * 20) - DECELERATION
 
-    paddleTwo.accelerationY = 4
-    paddleTwo.update()
+    paddleTwo.accelerationY = PADDLE_ACCELERATION * 20
     paddleTwo.update()
 
     assert.equal(paddleTwo.speedY, targetSpeedY)
@@ -198,13 +196,12 @@ describe('Paddle Movement', () => {
   // Paddle Object velocity retards over time
   it('retards over time', () => {
     const paddleTwo = newGame.paddleTwo
-    const targetSpeedX = 6
-    const targetSpeedY = 6
+    const targetSpeedX = (PADDLE_ACCELERATION * 20) - DECELERATION
+    const targetSpeedY = (PADDLE_ACCELERATION * 20) - DECELERATION
 
-    paddleTwo.speedX = 8
-    paddleTwo.speedY = 8
+    paddleTwo.speedX = PADDLE_ACCELERATION * 20
+    paddleTwo.speedY = PADDLE_ACCELERATION * 20
 
-    paddleTwo.update()
     paddleTwo.update()
 
     assert.equal(paddleTwo.speedX, targetSpeedX)
@@ -244,13 +241,11 @@ describe('Ball Movement', () => {
   it('decelerates over time', () => {
     const ball = newGame.ball
 
-    const targetSpeedX = 3
-    const targetSpeedY = 3
+    const targetSpeedX = (PADDLE_ACCELERATION * 20) - DECELERATION
+    const targetSpeedY = (PADDLE_ACCELERATION * 20) - DECELERATION
+    ball.speedX = PADDLE_ACCELERATION * 20
+    ball.speedY = PADDLE_ACCELERATION * 20
 
-    ball.speedX = 5
-    ball.speedY = 5
-
-    ball.update()
     ball.update()
 
     assert.equal(ball.speedX, targetSpeedX)
