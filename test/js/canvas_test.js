@@ -70,87 +70,105 @@ describe('Paddle Movement', () => {
     document.body.removeChild(canvas)
   })
 
+/*
+  NOTES:
+  1) Here we claim to check MOVEMENT, be we are actually checking
+     that the key press affects SPEED. Instead we could check that
+     x and y changes according to speed.
+
+  2) We no longer need to have acceleration properties for our objects.
+     We can leave acceleration as a constant for the paddles, and tweak
+     it accordingly. And simply let the speed increase and decrease.
+
+  3) This changes our testing below quite a bit. In places we are simulating
+     key presses by assigning a high number to the acceleration property. This
+     will have to be changed.
+
+     I have already changed the movement in the game.
+     (A key press affects speed based on our constant ACCELERATION)
+*/
+
   // paddleOne movement
   // User input
   it('moves up with the "w" key', () => {
     const paddleOne = newGame.paddleOne
     const upEvent = new KeyboardEvent('keydown', { key: 'w' })
-    const targetAcceleration = paddleOne.accelerationY - PADDLE_ACCELERATION
+    const targetSpeed = paddleOne.speedY - PADDLE_ACCELERATION
 
     document.dispatchEvent(upEvent)
 
-    assert.equal(paddleOne.accelerationY, targetAcceleration)
+    assert.equal(paddleOne.speedY, targetSpeed)
   })
 
   it('moves down with the "s" key', () => {
     const paddleOne = newGame.paddleOne
     const downEvent = new KeyboardEvent('keydown', { key: 's' })
-    const targetAcceleration = paddleOne.accelerationY + PADDLE_ACCELERATION
+    const targetSpeed = paddleOne.speedY + PADDLE_ACCELERATION
 
     document.dispatchEvent(downEvent)
 
-    assert.equal(paddleOne.accelerationY, targetAcceleration)
+    assert.equal(paddleOne.speedY, targetSpeed)
   })
 
   it('moves left with the "a" key', () => {
     const paddleOne = newGame.paddleOne
     const leftEvent = new KeyboardEvent('keydown', { key: 'a' })
-    const targetAcceleration = paddleOne.accelerationX - PADDLE_ACCELERATION
+    const targetSpeed = paddleOne.speedX - PADDLE_ACCELERATION
 
     document.dispatchEvent(leftEvent)
 
-    assert.equal(paddleOne.accelerationX, targetAcceleration)
+    assert.equal(paddleOne.speedX, targetSpeed)
   })
 
   it('moves right with the "d" key', () => {
     const paddleOne = newGame.paddleOne
     const rightEvent = new KeyboardEvent('keydown', { key: 'd' })
-    const targetAcceleration = paddleOne.accelerationX + PADDLE_ACCELERATION
+    const targetSpeed = paddleOne.speedX + PADDLE_ACCELERATION
 
     document.dispatchEvent(rightEvent)
 
-    assert.equal(paddleOne.accelerationX, targetAcceleration)
+    assert.equal(paddleOne.speedX, targetSpeed)
   })
 
   // paddleTwo movement
   it('moves up with the "ArrowUp" key', () => {
     const paddleTwo = newGame.paddleTwo
     const upEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' })
-    const targetAcceleration = paddleTwo.accelerationY - PADDLE_ACCELERATION
+    const targetSpeed = paddleTwo.speedY - PADDLE_ACCELERATION
 
     document.dispatchEvent(upEvent)
 
-    assert.equal(paddleTwo.accelerationY, targetAcceleration)
+    assert.equal(paddleTwo.speedY, targetSpeed)
   })
 
   it('moves down with the "ArrowDown" key', () => {
     const paddleTwo = newGame.paddleTwo
     const downEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' })
-    const targetAcceleration = paddleTwo.accelerationY + PADDLE_ACCELERATION
+    const targetSpeed = paddleTwo.speedY + PADDLE_ACCELERATION
 
     document.dispatchEvent(downEvent)
 
-    assert.equal(paddleTwo.accelerationY, targetAcceleration)
+    assert.equal(paddleTwo.speedY, targetSpeed)
   })
 
   it('moves left with the "ArrowLeft" key', () => {
     const paddleTwo = newGame.paddleTwo
     const leftEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft' })
-    const targetAcceleration = paddleTwo.accelerationX - PADDLE_ACCELERATION
+    const targetSpeed = paddleTwo.speedX - PADDLE_ACCELERATION
 
     document.dispatchEvent(leftEvent)
 
-    assert.equal(paddleTwo.accelerationX, targetAcceleration)
+    assert.equal(paddleTwo.speedX, targetSpeed)
   })
 
   it('moves right with the "ArrowRight" key', () => {
     const paddleTwo = newGame.paddleTwo
     const rightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' })
-    const targetAcceleration = paddleTwo.accelerationX + PADDLE_ACCELERATION
+    const targetSpeed = paddleTwo.speedX + PADDLE_ACCELERATION
 
     document.dispatchEvent(rightEvent)
 
-    assert.equal(paddleTwo.accelerationX, targetAcceleration)
+    assert.equal(paddleTwo.speedX, targetSpeed)
   })
 
   // Acceleration affects Speed

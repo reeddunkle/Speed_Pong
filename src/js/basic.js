@@ -1,6 +1,8 @@
 
-export const PADDLE_ACCELERATION = 1
-export const DECELERATION = 10
+export const PADDLE_ACCELERATION = 1.3
+export const DECELERATION = 0.2
+export const MAX_ACCEL = 10
+export const SOPORIFIC = 1
 
 const Paddle = () => {
   return {
@@ -12,26 +14,27 @@ const Paddle = () => {
     speedY: 0,
     accelerationX: 0,
     accelerationY: 0,
-    update () {
-      this.speedX += this.accelerationX
-      this.speedY += this.accelerationY
-
-      if (this.speedX > 0) {
+    decelerate () {
+      if (this.speedX > SOPORIFIC) {
         this.speedX -= DECELERATION
-      }
-
-      if (this.speedX < 0) {
+      } else if (this.speedX < -SOPORIFIC) {
         this.speedX += DECELERATION
       }
+      else {
+        this.speedX = 0
+      }
+      // (this.speedX < SOPORIFIC || this.speedX > -SOPORIFIC)
 
-      if (this.speedY > 0) {
+      if (this.speedY > SOPORIFIC) {
         this.speedY -= DECELERATION
-      }
-
-      if (this.speedY < 0) {
+      } else if (this.speedY < -SOPORIFIC) {
         this.speedY += DECELERATION
+      } else {
+        this.speedY = 0
       }
-
+    },
+    update () {
+      this.decelerate()
       this.x += this.speedX
       this.y += this.speedY
     },
@@ -52,7 +55,7 @@ const Ball = () => {
     speedY: 0,
     accelerationX: 0,
     accelerationY: 0,
-    update () {
+    decelerate () {
       if (this.speedX > 0) {
         this.speedX -= DECELERATION
       }
@@ -65,7 +68,9 @@ const Ball = () => {
       if (this.speedY > 0) {
         this.speedY -= DECELERATION
       }
-
+    },
+    update () {
+      this.decelerate()
       this.x += this.speedX
       this.y += this.speedY
     },
@@ -80,35 +85,51 @@ const Ball = () => {
 const paddleMovement = (key, paddleOne, paddleTwo) => {
   switch (key) {
     case 'w':
-      paddleOne.accelerationY -= PADDLE_ACCELERATION
+      if (paddleOne.speedY > -MAX_ACCEL) {
+        paddleOne.speedY -= PADDLE_ACCELERATION
+      }
       break
 
     case 's':
-      paddleOne.accelerationY += PADDLE_ACCELERATION
+      if (paddleOne.speedY < MAX_ACCEL) {
+        paddleOne.speedY += PADDLE_ACCELERATION
+      }
       break
 
     case 'a':
-      paddleOne.accelerationX -= PADDLE_ACCELERATION
+      if (paddleOne.speedX > -MAX_ACCEL) {
+        paddleOne.speedX -= PADDLE_ACCELERATION
+      }
       break
 
     case 'd':
-      paddleOne.accelerationX += PADDLE_ACCELERATION
+      if (paddleOne.speedY < MAX_ACCEL) {
+        paddleOne.speedX += PADDLE_ACCELERATION
+      }
       break
 
     case 'ArrowUp':
-      paddleTwo.accelerationY -= PADDLE_ACCELERATION
+      if (paddleTwo.speedY > -MAX_ACCEL) {
+        paddleTwo.speedY -= PADDLE_ACCELERATION
+      }
       break
 
     case 'ArrowDown':
-      paddleTwo.accelerationY += PADDLE_ACCELERATION
+      if (paddleTwo.speedY < MAX_ACCEL) {
+        paddleTwo.speedY += PADDLE_ACCELERATION
+      }
       break
 
     case 'ArrowLeft':
-      paddleTwo.accelerationX -= PADDLE_ACCELERATION
+      if (paddleTwo.speedX > -MAX_ACCEL) {
+        paddleTwo.speedX -= PADDLE_ACCELERATION
+      }
       break
 
     case 'ArrowRight':
-      paddleTwo.accelerationX += PADDLE_ACCELERATION
+      if (paddleTwo.speedX < MAX_ACCEL) {
+        paddleTwo.speedX += PADDLE_ACCELERATION
+      }
       break
 
     default:
