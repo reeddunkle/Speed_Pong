@@ -1,6 +1,13 @@
+/*
+NOTES:
+- Keyboarder object not working
+- Seems like Game object doesn't receive the property
+
+*/
 
 export const PADDLE_ACCELERATION = 1.3
 export const DECELERATION = 0.2
+export const PERCENT_DECEL = 0.75
 export const MAX_ACCEL = 10
 export const SOPORIFIC = 1
 
@@ -12,15 +19,12 @@ const Paddle = () => {
     height: 130,
     speedX: 0,
     speedY: 0,
-    accelerationX: 0,
-    accelerationY: 0,
     decelerate () {
       if (this.speedX > SOPORIFIC) {
         this.speedX -= DECELERATION
       } else if (this.speedX < -SOPORIFIC) {
         this.speedX += DECELERATION
-      }
-      else {
+      } else {
         this.speedX = 0
       }
       // (this.speedX < SOPORIFIC || this.speedX > -SOPORIFIC)
@@ -53,21 +57,9 @@ const Ball = () => {
     endAngle: Math.PI * 2,
     speedX: 0,
     speedY: 0,
-    accelerationX: 0,
-    accelerationY: 0,
     decelerate () {
-      if (this.speedX > 0) {
-        this.speedX -= DECELERATION
-      }
-      if (this.speedX < 0) {
-        this.speedX += DECELERATION
-      }
-      if (this.speedY < 0) {
-        this.speedY += DECELERATION
-      }
-      if (this.speedY > 0) {
-        this.speedY -= DECELERATION
-      }
+      this.speedX *= PERCENT_DECEL
+      this.speedY *= PERCENT_DECEL
     },
     update () {
       this.decelerate()
@@ -82,60 +74,108 @@ const Ball = () => {
   }
 }
 
-const paddleMovement = (key, paddleOne, paddleTwo) => {
-  switch (key) {
-    case 'w':
-      if (paddleOne.speedY > -MAX_ACCEL) {
-        paddleOne.speedY -= PADDLE_ACCELERATION
-      }
-      break
+const Keyboarder = () => {
+  var keyState = {}
+  window.onkeydown = (e) => {
+    keyState[e.keyCode] = true
+  }
+  window.onkeyup = (e) => {
+    keyState[e.keyCode] = false
+  }
 
-    case 's':
-      if (paddleOne.speedY < MAX_ACCEL) {
-        paddleOne.speedY += PADDLE_ACCELERATION
-      }
-      break
-
-    case 'a':
-      if (paddleOne.speedX > -MAX_ACCEL) {
-        paddleOne.speedX -= PADDLE_ACCELERATION
-      }
-      break
-
-    case 'd':
-      if (paddleOne.speedY < MAX_ACCEL) {
-        paddleOne.speedX += PADDLE_ACCELERATION
-      }
-      break
-
-    case 'ArrowUp':
-      if (paddleTwo.speedY > -MAX_ACCEL) {
-        paddleTwo.speedY -= PADDLE_ACCELERATION
-      }
-      break
-
-    case 'ArrowDown':
-      if (paddleTwo.speedY < MAX_ACCEL) {
-        paddleTwo.speedY += PADDLE_ACCELERATION
-      }
-      break
-
-    case 'ArrowLeft':
-      if (paddleTwo.speedX > -MAX_ACCEL) {
-        paddleTwo.speedX -= PADDLE_ACCELERATION
-      }
-      break
-
-    case 'ArrowRight':
-      if (paddleTwo.speedX < MAX_ACCEL) {
-        paddleTwo.speedX += PADDLE_ACCELERATION
-      }
-      break
-
-    default:
-      return
+  return {
+    keyState,
+    isDown (keyCode) {
+      return this.keyState[keyCode] === true
+    },
+    KEYS: { W: 87, A: 65, S: 83, D: 69,
+                UP: 38, LEFT: 37, RIGHT: 39, DOWN: 40 }
   }
 }
+
+const checkKeys = (game, paddleOne, paddleTwo) => {
+  if (this.keyboarder.isDown(this.keyboarder.KEY.W)) {
+    if (paddleOne.speedY > -MAX_ACCEL) {
+      paddleOne.speedY -= PADDLE_ACCELERATION
+    }
+  } else if (this.keyboarder.isDown(this.keyboarder.KEY.S)) {
+    if (paddleOne.speedY < MAX_ACCEL) {
+      paddleOne.speedY += PADDLE_ACCELERATION
+    }
+  }
+
+  if (this.keyboarder.isDown(this.keyboarder.KEY.A)) {
+    if (paddleOne.speedX > -MAX_ACCEL) {
+      paddleOne.speedX -= PADDLE_ACCELERATION
+    }
+  } else if (this.keyboarder.isDown(this.keyboarder.KEY.D)) {
+    if (paddleOne.speedX < MAX_ACCEL) {
+      paddleOne.speedX += PADDLE_ACCELERATION
+    }
+  }
+
+  if (this.keyboarder.isDown(this.keyboarder.KEY.UP)) {
+    if (paddleTwo.speedY > -MAX_ACCEL) {
+      paddleTwo.speedY -= PADDLE_ACCELERATION
+    }
+  } else if (this.keyboarder.isDown(this.keyboarder.KEY.DOWN)) {
+    if (paddleTwo.speedY < MAX_ACCEL) {
+      paddleTwo.speedY += PADDLE_ACCELERATION
+    }
+  }
+
+  if (this.keyboarder.isDown(this.keyboarder.KEY.LEFT)) {
+    if (paddleTwo.speedX > -MAX_ACCEL) {
+      paddleTwo.speedX -= PADDLE_ACCELERATION
+    }
+  } else if (this.keyboarder.isDown(this.keyboarder.KEY.RIGHT)) {
+    if (paddleTwo.speedX < MAX_ACCEL) {
+      paddleTwo.speedX += PADDLE_ACCELERATION
+    }
+  }
+}
+
+// const paddleMovement = (key, paddleOne, paddleTwo) => {
+//   if (key === 'w') {
+//     if (paddleOne.speedY > -MAX_ACCEL) {
+//       paddleOne.speedY -= PADDLE_ACCELERATION
+//     }
+//   } else if (key === 's') {
+//     if (paddleOne.speedY < MAX_ACCEL) {
+//       paddleOne.speedY += PADDLE_ACCELERATION
+//     }
+//   }
+
+//   if (key === 'a') {
+//     if (paddleOne.speedX > -MAX_ACCEL) {
+//       paddleOne.speedX -= PADDLE_ACCELERATION
+//     }
+//   } else if (key === 'd') {
+//     if (paddleOne.speedX < MAX_ACCEL) {
+//       paddleOne.speedX += PADDLE_ACCELERATION
+//     }
+//   }
+
+//   if (key === 'ArrowUp') {
+//     if (paddleTwo.speedY > -MAX_ACCEL) {
+//       paddleTwo.speedY -= PADDLE_ACCELERATION
+//     }
+//   } else if (key === 'ArrowDown') {
+//     if (paddleTwo.speedY < MAX_ACCEL) {
+//       paddleTwo.speedY += PADDLE_ACCELERATION
+//     }
+//   }
+
+//   if (key === 'ArrowLeft') {
+//     if (paddleTwo.speedX > -MAX_ACCEL) {
+//       paddleTwo.speedX -= PADDLE_ACCELERATION
+//     }
+//   } else if (key === 'ArrowRight') {
+//     if (paddleTwo.speedX < MAX_ACCEL) {
+//       paddleTwo.speedX += PADDLE_ACCELERATION
+//     }
+//   }
+// }
 
 export const Game = (canvas) => {
   const ctx = canvas.getContext('2d')
@@ -145,6 +185,8 @@ export const Game = (canvas) => {
   const paddleOne = Paddle()
   const paddleTwo = Paddle()
   const ball = Ball()
+  const keyboarder = Keyboarder()
+  console.log(keyboarder)
 
   // Set the start values
   paddleOne.x = 5
@@ -156,9 +198,9 @@ export const Game = (canvas) => {
   ball.x = canvas.width / 2
   ball.y = canvas.height / 2
 
-  document.addEventListener('keydown', (event) => {
-    paddleMovement(event.key, paddleOne, paddleTwo)
-  })
+  // document.addEventListener('keydown', (event) => {
+  //   paddleMovement(event.key, paddleOne, paddleTwo)
+  // })
 
   var drawObjects = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -168,6 +210,8 @@ export const Game = (canvas) => {
   }
 
   var update = () => {
+    checkKeys(this, paddleOne, paddleTwo)
+
     paddleOne.update()
     paddleTwo.update()
     ball.update()
@@ -178,7 +222,6 @@ export const Game = (canvas) => {
     drawObjects()
     requestAnimationFrame(tick)
   }
-
   tick()
 
   return {
