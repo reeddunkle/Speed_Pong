@@ -7,7 +7,7 @@ NOTES:
 export const PADDLE_ACCELERATION = 1.3
 export const DECELERATION = 0.2
 export const PERCENT_DECEL = 0.99
-export const MAX_ACCEL = 10
+export const MAX_ACCEL = 8
 export const SOPORIFIC = 1
 export const SPEED_ABSORB = 0.75
 
@@ -15,8 +15,8 @@ const Paddle = () => {
   return {
     x: 0,
     y: 0,
-    width: 7,
-    height: 130,
+    width: 10,
+    height: 200,
     speedX: 0,
     speedY: 0,
     decelerate () {
@@ -150,7 +150,7 @@ const checkCollision = (canvas, ball, paddleOne, paddleTwo) => {
   if (paddleTwo.x + paddleTwo.width >= canvas.width) {
     paddleTwo.x = canvas.width - 1 - paddleTwo.width
     paddleTwo.speedX = (-paddleTwo.speedX) * SPEED_ABSORB
-  } else if (paddleTwo.x <= canvas.width - (canvas.width * 0.75)) {
+  } else if (paddleTwo.x <= canvas.width - (canvas.width * 0.45)) {
     paddleTwo.x = canvas.width - (canvas.width * 0.75)
     paddleTwo.speedX = (-paddleTwo.speedX) * SPEED_ABSORB
   }
@@ -163,37 +163,54 @@ const checkCollision = (canvas, ball, paddleOne, paddleTwo) => {
     paddleTwo.speedY = (-paddleTwo.speedY) * SPEED_ABSORB
   }
 
-  if (ball.y <= 0) {
-    ball.y = 1
+  if (ball.y - ball.radius <= 0) {
+    ball.y = ball.radius
     ball.speedY = (-ball.speedY) * SPEED_ABSORB
-  } else if (ball.y + ball.radius*2 >= canvas.height) {
-    ball.y = canvas.height - ball.radius*2
+  } else if (ball.y + ball.radius >= canvas.height) {
+    ball.y = canvas.height - ball.radius
     ball.speedY = (-ball.speedY) * SPEED_ABSORB
   }
 
   // Ball collision
-  if (ball.x <= paddleOne.x + paddleOne.width + 1 &&
-      ball.x >= paddleOne.x - 1 &&
-      ball.y + ball.radius*2 >= paddleOne.y - 1 &&
-      ball.y <= paddleOne.y + paddleOne.height + 1){
+  if (ball.x <= paddleOne.x + paddleOne.width + Math.abs(ball.speedX) &&
+      ball.x + ball.radius >= paddleOne.x &&
+      ball.y + ball.radius >= paddleOne.y &&
+      ball.y <= paddleOne.y + paddleOne.height) {
+    ball.x = paddleOne.x + paddleOne.width + ball.radius
+    paddleOne.x = ball.x - paddleOne.width - ball.radius
 
-    ball.x = paddleOne.x + paddleOne.width
-    paddleOne.x = ball.x - paddleOne.width
-
-    ball.speedX = paddleOne.speedX * 1.01
-    paddleOne.speedX = paddleOne.speedX * SPEED_ABSORB
+    ball.speedX = Math.max(paddleOne.speedX * 1.01, -ball.speedX)
+    if (ball.speedY > 0 && paddleOne.speedY > 0) {
+      ball.speedY = Math.max(ball.speedY, paddleOne.speedY)
+    } else if (ball.speedY < 0 && paddleOne.speedY < 0) {
+      ball.speedY = Math.min(ball.speedY, paddleOne.speedY)
+    } else if (ball.speedY > 0 && paddleOne.speedY < 0) {
+      ball.speedY = -(Math.abs(ball.speedY + paddleOne.speedY))
+    } else if (ball.speedY < 0 && paddleOne.speedY > 0) {
+      ball.speedY = Math.abs(paddleOne.speedY + ball.speedY)
+    }
+    paddleOne.speedX = -(Math.abs(ball.speedX * 0.35))
   }
 
-  if (ball.x + ball.radius*2 >= paddleTwo.x - 1 &&
-      ball.x + ball.radius*2 <= paddleTwo.x + paddleTwo.width + 1 &&
-      ball.y + ball.radius*2 >= paddleTwo.y - 1 &&
-      ball.y <= paddleTwo.y + paddleTwo.height + 1){
+  if (ball.x + ball.radius >= paddleTwo.x - ball.speedX &&
+      ball.x + ball.radius <= paddleTwo.x + paddleTwo.width &&
+      ball.y + ball.radius >= paddleTwo.y &&
+      ball.y <= paddleTwo.y + paddleTwo.height) {
+    ball.x = paddleTwo.x - ball.radius
+    paddleTwo.x = ball.x + ball.radius
 
-    ball.x = paddleTwo.x - ball.radius*2
-    paddleTwo.x = ball.x + ball.radius*2
-
-    ball.speedX = paddleTwo.speedX * 1.01
-    paddleTwo.speedX = paddleTwo.speedX * SPEED_ABSORB
+    ball.speedX = Math.min(paddleTwo.speedX * 1.01, -ball.speedX)
+    if (ball.speedY > 0 && paddleTwo.speedY > 0) {
+      ball.speedY = Math.max(ball.speedY, paddleTwo.speedY)
+    } else if (ball.speedY < 0 && paddleTwo.speedY < 0) {
+      ball.speedY = Math.min(ball.speedY, paddleTwo.speedY)
+    } else if (ball.speedY > 0 && paddleTwo.speedY < 0) {
+      ball.speedY = -(Math.abs(ball.speedY + paddleTwo.speedY))
+    } else if (ball.speedY < 0 && paddleTwo.speedY > 0) {
+      ball.speedY = Math.abs(paddleTwo.speedY + ball.speedY)
+    }
+    // ball.speedY = paddleTwo.speedY
+    paddleTwo.speedX = Math.abs(ball.speedX * 0.35)
   }
 }
 
@@ -217,6 +234,8 @@ export const Game = (canvas) => {
 
   ball.x = canvas.width / 2
   ball.y = canvas.height / 2
+  ball.speedX = Math.random() < 0.5 ? -2 : 2
+  ball.speedY = Math.random() < 0.5 ? -2 : 2
 
   var drawObjects = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
