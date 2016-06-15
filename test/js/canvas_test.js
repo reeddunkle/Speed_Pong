@@ -8,7 +8,6 @@ describe('Canvas Rendering', () => {
     canvas = document.createElement('canvas')
     canvas.setAttribute('id', 'gameWindow')
     document.body.appendChild(canvas)
-
     newGame = Game(canvas)
   })
 
@@ -90,6 +89,7 @@ describe('Paddle Movement', () => {
 
   // paddleOne movement
   // User input
+
   it('moves up with the "w" key', () => {
     const paddleOne = newGame.paddleOne
     const upEvent = new KeyboardEvent('keydown', { key: 'w' })
