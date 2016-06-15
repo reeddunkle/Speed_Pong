@@ -4,6 +4,8 @@ NOTES:
 
 */
 
+import {Keyboarder} from './utilities.js'
+
 export const PADDLE_ACCELERATION = 1.3
 export const DECELERATION = 0.2
 export const PERCENT_DECEL = 0.99
@@ -17,6 +19,8 @@ const Paddle = () => {
     y: 0,
     width: 10,
     height: 200,
+    right () { return this.x + this.width },
+    bottom () { return this.y + this.height },
     speedX: 0,
     speedY: 0,
     decelerate () {
@@ -52,6 +56,10 @@ const Ball = () => {
     x: 0,
     y: 0,
     radius: 8,
+    top () { return this.y - this.radius },
+    bottom () { return this.y + this.radius },
+    left () { return this.x - this.radius },
+    right () { return this.x + this.radius },
     startAngle: 0,
     endAngle: Math.PI * 2,
     speedX: 0,
@@ -68,26 +76,7 @@ const Ball = () => {
   }
 }
 
-const Keyboarder = () => {
-  var keyState = {}
-  window.onkeydown = (e) => {
-    keyState[e.keyCode] = true
-  }
-  window.onkeyup = (e) => {
-    keyState[e.keyCode] = false
-  }
-
-  return {
-    keyState,
-    isDown (keyCode) {
-      return this.keyState[keyCode] === true
-    },
-    KEY: { W: 87, A: 65, S: 83, D: 68,
-                UP: 38, LEFT: 37, RIGHT: 39, DOWN: 40 }
-  }
-}
-
-const checkKeys = (keyboarder, paddleOne, paddleTwo) => {
+export const checkKeys = (keyboarder, paddleOne, paddleTwo) => {
   if (keyboarder.isDown(keyboarder.KEY.W)) {
     if (paddleOne.speedY > -MAX_ACCEL) {
       paddleOne.speedY -= PADDLE_ACCELERATION
@@ -129,6 +118,9 @@ const checkKeys = (keyboarder, paddleOne, paddleTwo) => {
   }
 }
 
+// Correct math in collision detection to account for movement
+// of both ball AND paddle
+// Check where ball x even is compared to radius
 const checkCollision = (canvas, ball, paddleOne, paddleTwo) => {
   // Canvas borders
   if (paddleOne.x <= 0) {
@@ -223,14 +215,6 @@ export const Game = (canvas) => {
   const paddleTwo = Paddle()
   const ball = Ball()
   const keyboarder = Keyboarder()
-  console.log(keyboarder)
-
-  // Set the start values
-  paddleOne.x = 5
-  paddleOne.y = 200
-
-  paddleTwo.x = canvas.width - paddleTwo.width - 5
-  paddleTwo.y = 200
 
   ball.x = canvas.width / 2
   ball.y = canvas.height / 2
@@ -266,6 +250,12 @@ export const Game = (canvas) => {
     ball,
     drawObjects,
     drawStartScreen () {
+      // Set the start values
+      paddleOne.x = 5
+      paddleOne.y = 200
+
+      paddleTwo.x = canvas.width - paddleTwo.width - 5
+      paddleTwo.y = 200
       this.drawObjects()
       // this.drawStartButtons()
     }
