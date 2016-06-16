@@ -1,19 +1,28 @@
 
 export const Keyboarder = () => {
   var keyState = {}
-  window.onkeydown = (e) => {
-    keyState[e.keyCode] = true
-  }
-  window.onkeyup = (e) => {
-    keyState[e.keyCode] = false
-  }
+  // window.onkeydown = (e) => {
+  //   keyState[e.keyCode] = true
+  // }
+
+  // window.onkeyup = (e) => {
+  //   keyState[e.keyCode] = false
+  // }
+
+  document.addEventListener('keydown', (e) => {
+    keyState[e.key] = true
+  })
+
+  document.addEventListener('keyup', (e) => {
+    keyState[e.key] = false
+  })
 
   return {
     keyState,
-    isDown (keyCode) {
-      return this.keyState[keyCode] === true
+    isDown (key) {
+      return this.keyState[key] === true
     },
-    KEY: { W: 87, A: 65, S: 83, D: 68,
-                UP: 38, LEFT: 37, RIGHT: 39, DOWN: 40 }
+    KEY: { W: 'w', A: 'a', S: 's', D: 'd',
+                UP: 'ArrowUp', LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', DOWN: 'ArrowDown' }
   }
 }
