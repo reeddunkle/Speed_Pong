@@ -2,6 +2,8 @@ TODO
 ------
 
 - [ ] Fix HTML/CSS for score
+- [ ] Fix broken tests from refactoring
+- [ ] Write more tests
 - [ ] Add buttons for new game, controls
 - [ ] AI
 - [X] Collision detection for paddle canvas borders
