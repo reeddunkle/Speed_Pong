@@ -1,23 +1,18 @@
 TODO
 ------
 
-- Collision detection for ball and paddle
-- Collision detection for paddle canvas borders
-- Invisible wall for paddles in the middle?
-
-- Find the right movement values (harder than it sounds)
-
-- AI
-
-- ~~Acceleration depleting over time / Each tick~~
-
-- ~~Implement speed based on acceleration~~
-
-- ~~Speed depletes over time / Each tick~~
-
-- ~~Frame refreshing~~
-
-- ~~paddle positions update each frame based on speed~~
+- [ ] Fix HTML/CSS for score
+- [ ] Add buttons for new game, controls
+- [ ] AI
+- [X] Collision detection for paddle canvas borders
+- [X] Collision detection for ball and paddle
+- [X] Invisible wall for paddles in the middle?
+- [X] Find the right movement values
+- [X] Acceleration depleting over time / Each tick
+- [X] Implement speed based on acceleration
+- [X] Speed depletes over time / Each tick
+- [X] Frame refreshing
+- [X] paddle positions update each frame based on speed
 
 
 
