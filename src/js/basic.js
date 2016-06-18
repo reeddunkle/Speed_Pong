@@ -10,7 +10,6 @@ import {Keyboarder} from './utilities.js'
 
 export const PADDLE_ACCELERATION = 1.3
 export const DECELERATION = 0.2
-export const PERCENT_DECEL = 0.99
 export const MAX_ACCEL = 7
 export const SOPORIFIC = 1
 export const SPEED_ABSORB = 0.75
