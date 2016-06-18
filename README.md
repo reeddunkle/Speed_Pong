@@ -1,5 +1,7 @@
 # Pressure Pong
 
+<img src="http://i.imgur.com/ADXJ2iu.gif" />
+
 *In development*
 
 A take on the classic Pong! game, adding x-axis movement and acceleration to the paddles.
@@ -11,11 +13,6 @@ A take on the classic Pong! game, adding x-axis movement and acceleration to the
 - [X] Improved collision detection
 - [X] Scoring!
 
-----
-
-<img src="http://i.imgur.com/ADXJ2iu.gif" />
-
-----
 
 ## Application Goals
 
