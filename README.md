@@ -13,7 +13,7 @@ A take on the classic Pong! game, adding x-axis movement and acceleration to the
 
 ----
 
-<img src=http://i.imgur.com/DNab8kB.gif>
+<img src=http://i.imgur.com/DNab8kB.gifv>
 
 ----
 
