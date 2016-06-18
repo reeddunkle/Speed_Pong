@@ -17,3 +17,40 @@ canvas {
   justify-content: center;
   align-content: center;
 }
+
+.score-board {
+  list-style: none;
+  justify-content: center;
+  position: static;
+}
+
+.title {
+  position: static;
+  margin: auto;
+  text-align: center;
+  font-size: 36px;
+  width: 50vw;
+  height: 30px;
+}
+
+#playerOne {
+  padding: 10px;
+  margin: auto;
+  font-size: 50px;
+  text-align: center;
+  border: 2px solid black;
+  width: 75px;
+  height: 75px;
+  position: fixed;
+}
+
+#playerTwo {
+  padding: 10px;
+  font-size: 50px;
+  margin: auto;
+  text-align: center;
+  border: 2px solid black;
+  width: 75px;
+  height: 75px;
+  position: relative;
+}

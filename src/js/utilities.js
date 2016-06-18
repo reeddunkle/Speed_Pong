@@ -1,13 +1,6 @@
 
 export const Keyboarder = () => {
   var keyState = {}
-  // window.onkeydown = (e) => {
-  //   keyState[e.keyCode] = true
-  // }
-
-  // window.onkeyup = (e) => {
-  //   keyState[e.keyCode] = false
-  // }
 
   document.addEventListener('keydown', (e) => {
     keyState[e.key] = true
