@@ -8,28 +8,12 @@ A take on the classic Pong! game, adding x-axis movement and acceleration to the
 
 ## Recently added:
 
-- We added canvas re-rendering!
-- Wrote update functions for the objects
-- (See commit messages for more)
+- [X] Improved collision detection
+- [X] Scoring!
 
 ----
 
-## What it does right now:
-
-- Draws shapes onto a canvas
-
-<img src=http://i.imgur.com/isn8jIJ.png>
-
-- Paddles move ~~(but you can't see that yet)~~
-- Tests the canvas rendering
-- Tests the object properties
-- Tests the paddles' movements
-
-## To-do:
-
-- ~~Re-render the canvas (frames per second)~~
-- Move the ball
-- Be a game
+<img src=http://i.imgur.com/DNab8kB.gifv>
 
 ----
 
