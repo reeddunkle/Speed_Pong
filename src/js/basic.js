@@ -1,7 +1,9 @@
 /*
 NOTES:
--
+- HTML/CSS for score boxes needs to be made good
 
+TODO:
+- Add buttons, instructions, max score, and new game options
 */
 
 import {Keyboarder} from './utilities.js'
