@@ -35,8 +35,9 @@ npm run start
 
 Point your browser to localhost:8080
 
-| Player 1  | Player 2  |
-|-----------|-----------|
+| Keys                        |
+|:---------:|:-------------:  |
+|Player 1   | Player 2        |
 | **WASD**  | **Arrow Keys**  |
 
 
