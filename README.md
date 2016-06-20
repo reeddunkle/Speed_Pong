@@ -4,7 +4,39 @@
 
 *In development*
 
-A take on the classic Pong! game, adding x-axis movement and acceleration to the paddles.
+A take on the classic Pong game, adding x-axis movement and acceleration to the paddles.
+
+Testing
+----
+
+Clone the repo:
+
+```
+git clone https://github.com/reeddunkle/Pressure_Pong.git
+```
+
+Navigate to the repo's directory:
+
+```
+cd Pressure_Pong
+```
+
+Install the dependencies:
+
+```
+npm install
+```
+
+Start the dev server:
+
+```
+npm run start
+```
+
+Point your browser to localhost:8080
+
+Use WASD keys for Player One, and the arrow keys for Player Two
+
 
 ----
 
