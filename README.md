@@ -35,7 +35,9 @@ npm run start
 
 Point your browser to localhost:8080
 
-Use WASD keys for Player One, and the arrow keys for Player Two
+| Player 1  | Player 2  |
+|-----------|-----------|
+| **WASD**  | **Arrow Keys**  |
 
 
 ----
