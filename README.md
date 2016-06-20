@@ -1,6 +1,6 @@
 # Pressure Pong
 
-<img src="http://i.imgur.com/3bL47QZ.gif" />
+<img src="http://i.imgur.com/wDzXXXD.gif" />
 
 *In development*
 
