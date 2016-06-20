@@ -229,7 +229,7 @@ const handleCollision = (canvas, ball, paddleOne, paddleTwo) => {
   }
 }
 
-export const Game = (canvas, scoreOneDiv, scoreTwoDiv) => {
+export const Game = (canvas) => {
   const ctx = canvas.getContext('2d')
   canvas.width = Math.floor(window.innerWidth * 0.95)
   canvas.height = Math.floor(window.innerHeight * 0.75)
@@ -243,8 +243,13 @@ export const Game = (canvas, scoreOneDiv, scoreTwoDiv) => {
   var score2 = 0
 
   var drawScore = () => {
-    scoreOneDiv.innerHTML = score1
-    scoreTwoDiv.innerHTML = score2
+    ctx.font = '30px Comic Sans MS'
+    ctx.fillStyle = 'red'
+    ctx.textAlign = 'center'
+    ctx.fillText(score1.toString(), 25, 30)
+    console.log()
+    ctx.fillText(score2.toString(), canvas.width - 25, 30)
+    ctx.fillStyle = 'black'
   }
 
   var drawObjects = () => {
@@ -284,16 +289,14 @@ export const Game = (canvas, scoreOneDiv, scoreTwoDiv) => {
       score1 += 1
       paddleOne.scored = false
       drawStartScreen()
-      drawScore()
     } else if (paddleTwo.scored) {
       score2 += 1
       paddleTwo.scored = false
       drawStartScreen()
-      drawScore()
     } else {
       drawObjects()
     }
-
+    drawScore()
     requestAnimationFrame(tick)
   }
   tick()
