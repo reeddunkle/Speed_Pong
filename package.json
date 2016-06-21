@@ -1,5 +1,5 @@
 {
-  "name": "pressure_pong",
+  "name": "speed_pong",
   "version": "1.0.0",
   "description": "A pong game",
   "main": "index.js",

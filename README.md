@@ -1,4 +1,4 @@
-# Pressure Pong
+# Speed Pong
 
 <img src="http://i.imgur.com/wDzXXXD.gif" />
 
