@@ -4,7 +4,7 @@
 
 *In development*
 
-A two-player, fast-paced version of Pong.
+A two-player, fast-paced version of Pong
 
 Testing
 ----
