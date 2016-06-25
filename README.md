@@ -6,7 +6,7 @@
 
 A two-player, fast-paced version of Pong
 
-Testing
+Installation
 ----
 
 Clone the repo:
@@ -27,18 +27,20 @@ Install the dependencies:
 npm install
 ```
 
+Playing!
+----
+
 Start the dev server:
 
 ```
 npm run start
 ```
 
-Point your browser to localhost:8080
+Point your browser to **localhost:8080**
 
-| Keys       |                 |
-|:---------:|:-------------:  |
-|Player 1   | Player 2        |
-| **WASD**  | **Arrow Keys**  |
+**KEYS:**
+Player 1: WASD
+Player 2: Arrow Keys
 
 
 ----
