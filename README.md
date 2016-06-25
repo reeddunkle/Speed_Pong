@@ -4,7 +4,7 @@
 
 *In development*
 
-A take on the classic Pong game, adding x-axis movement and acceleration to the paddles.
+A two-player, fast-paced version of Pong.
 
 Testing
 ----
